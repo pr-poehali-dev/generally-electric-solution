@@ -20,7 +20,7 @@ const Index = () => {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full"></div>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 leading-none">Электро<span className="text-primary">Про</span></h1>
+                <h1 className="text-2xl font-bold text-gray-900 leading-none">Вольт<span className="text-primary">Мастер</span></h1>
                 <div className="text-xs text-gray-500 font-medium tracking-wider">МОНТАЖ</div>
               </div>
             </div>
