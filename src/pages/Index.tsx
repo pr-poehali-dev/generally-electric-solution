@@ -10,9 +10,19 @@ const Index = () => {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4">
           <nav className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Icon name="Zap" className="text-primary" size={32} />
-              <h1 className="text-2xl font-bold text-gray-900">ЭлектроПро</h1>
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="white" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full"></div>
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900 leading-none">Электро<span className="text-primary">Про</span></h1>
+                <div className="text-xs text-gray-500 font-medium tracking-wider">МОНТАЖ</div>
+              </div>
             </div>
             <div className="hidden md:flex space-x-8">
               <a href="#services" className="text-gray-700 hover:text-primary transition-colors">Услуги</a>
