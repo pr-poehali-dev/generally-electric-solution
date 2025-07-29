@@ -206,7 +206,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {[
               {
                 category: "Розетки и выключатели",
@@ -230,6 +230,51 @@ const Index = () => {
                   { name: "Замена проводки 1-комн.", price: "от 35000₽" },
                   { name: "Замена проводки 2-комн.", price: "от 55000₽" },
                   { name: "Замена проводки 3-комн.", price: "от 75000₽" }
+                ]
+              }
+            ].map((category, index) => (
+              <Card key={index}>
+                <CardHeader>
+                  <CardTitle className="text-xl text-center text-primary">
+                    {category.category}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {category.services.map((service, serviceIndex) => (
+                    <div key={serviceIndex} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
+                      <span className="text-gray-700">{service.name}</span>
+                      <span className="font-bold text-primary">{service.price}</span>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                category: "Автоматизация и щиты",
+                services: [
+                  { name: "Сборка электрощита", price: "от 8000₽" },
+                  { name: "Замена автоматов", price: "от 1200₽/шт" },
+                  { name: "Установка УЗО", price: "от 2500₽" }
+                ]
+              },
+              {
+                category: "Диагностика и ремонт",
+                services: [
+                  { name: "Поиск неисправности", price: "от 1500₽" },
+                  { name: "Замена кабеля", price: "от 400₽/м" },
+                  { name: "Восстановление контакта", price: "от 900₽" }
+                ]
+              },
+              {
+                category: "Специальные работы",
+                services: [
+                  { name: "Заземление", price: "от 5000₽" },
+                  { name: "Монтаж видеонаблюдения", price: "от 2500₽/камера" },
+                  { name: "Умный дом", price: "от 15000₽" }
                 ]
               }
             ].map((category, index) => (
