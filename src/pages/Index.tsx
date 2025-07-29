@@ -1,7 +1,115 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Icon from "@/components/ui/icon";
+import { useState } from "react";
+
+const CalculatorForm = () => {
+  const [rooms, setRooms] = useState("");
+  const [apartmentType, setApartmentType] = useState("");
+  const [services, setServices] = useState({
+    sockets: 0,
+    switches: 0,
+    lighting: 0,
+    wiring: false
+  });
+  const [totalCost, setTotalCost] = useState(0);
+
+  const calculateCost = () => {
+    let cost = 0;
+    
+    // Базовая стоимость по типу квартиры
+    if (apartmentType === "1-room") cost += 35000;
+    else if (apartmentType === "2-room") cost += 55000;
+    else if (apartmentType === "3-room") cost += 75000;
+    
+    // Дополнительные услуги
+    cost += services.sockets * 800;
+    cost += services.switches * 600;
+    cost += services.lighting * 1500;
+    
+    setTotalCost(cost);
+  };
+
+  return (
+    <div className="space-y-8">
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="apartment-type">Тип квартиры</Label>
+            <Select value={apartmentType} onValueChange={setApartmentType}>
+              <SelectTrigger>
+                <SelectValue placeholder="Выберите тип квартиры" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1-room">1-комнатная</SelectItem>
+                <SelectItem value="2-room">2-комнатная</SelectItem>
+                <SelectItem value="3-room">3-комнатная</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          
+          <div>
+            <Label htmlFor="sockets">Количество розеток</Label>
+            <Input
+              id="sockets"
+              type="number"
+              value={services.sockets}
+              onChange={(e) => setServices({...services, sockets: Number(e.target.value)})}
+              placeholder="0"
+            />
+          </div>
+          
+          <div>
+            <Label htmlFor="switches">Количество выключателей</Label>
+            <Input
+              id="switches"
+              type="number"
+              value={services.switches}
+              onChange={(e) => setServices({...services, switches: Number(e.target.value)})}
+              placeholder="0"
+            />
+          </div>
+        </div>
+        
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="lighting">Количество светильников</Label>
+            <Input
+              id="lighting"
+              type="number"
+              value={services.lighting}
+              onChange={(e) => setServices({...services, lighting: Number(e.target.value)})}
+              placeholder="0"
+            />
+          </div>
+          
+          <div className="bg-primary/5 p-6 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2">Предварительная стоимость:</h3>
+            <div className="text-3xl font-bold text-primary">{totalCost.toLocaleString()}₽</div>
+            <p className="text-sm text-gray-600 mt-2">
+              *Окончательная стоимость определяется после выезда мастера
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div className="flex gap-4 justify-center">
+        <Button onClick={calculateCost} size="lg">
+          <Icon name="Calculator" size={20} className="mr-2" />
+          Рассчитать стоимость
+        </Button>
+        <Button variant="outline" size="lg">
+          <Icon name="Phone" size={20} className="mr-2" />
+          Заказать выезд мастера
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 const Index = () => {
   return (
@@ -301,6 +409,44 @@ const Index = () => {
               <Icon name="Calculator" size={20} className="mr-2" />
               Получить подробный расчёт
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Calculator Section */}
+      <section id="calculator" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <Badge className="mb-4">Калькулятор</Badge>
+            <h2 className="text-4xl font-bold mb-4">Рассчитайте стоимость работ</h2>
+            <p className="text-xl text-gray-600">
+              Получите предварительную стоимость электромонтажных работ онлайн
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Card className="p-8">
+              <CalculatorForm />
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Calculator Section */}
+      <section id="calculator" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <Badge className="mb-4">Калькулятор</Badge>
+            <h2 className="text-4xl font-bold mb-4">Рассчитайте стоимость работ</h2>
+            <p className="text-xl text-gray-600">
+              Получите предварительную стоимость электромонтажных работ онлайн
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Card className="p-8">
+              <CalculatorForm />
+            </Card>
           </div>
         </div>
       </section>
